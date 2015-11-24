@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/firstLine"
+        android:orientation="horizontal"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
@@ -24,12 +25,20 @@
             android:layout_width="wrap_content"
             android:id="@+id/lng"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:text="text" />
-        <Button
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvHeading"
+            android:text="Heading"/>
+
+        <!--<Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="getposition"
-            android:text="GetLocation"/>
+
+            android:text="Mark Target"/>-->
 
     </LinearLayout>
 
@@ -60,15 +69,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="distance"></TextView>
-    <TextView
-        android:layout_below="@+id/textViewProgress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvHeading"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
-        android:text="Heading"/>
 
     <ImageView
         android:id="@+id/pointer"
