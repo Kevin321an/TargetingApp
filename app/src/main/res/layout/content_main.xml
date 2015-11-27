@@ -27,11 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:text="text" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvHeading"
-            android:text="Heading"/>
+
 
         <!--<Button
             android:layout_width="wrap_content"
@@ -41,15 +37,30 @@
             android:text="Mark Target"/>-->
 
     </LinearLayout>
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/secodeLine"
+        android:orientation="horizontal"
+        >
 
-    <TextView
-        android:layout_below="@+id/seekBar1"
-        android:layout_margin="@dimen/abc_action_bar_content_inset_material"
-        android:id="@+id/text_distance"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="d"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvHeading"
+            android:text="Heading"/>
+
+
+    </LinearLayout>-->
+
+    <!--<TextView-->
+        <!--android:layout_below="@+id/seekBar1"-->
+        <!--android:layout_margin="@dimen/abc_action_bar_content_inset_material"-->
+        <!--android:id="@+id/text_distance"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="d"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium" />-->
 
     <SeekBar
         android:layout_marginStart="@dimen/abc_action_bar_content_inset_material"

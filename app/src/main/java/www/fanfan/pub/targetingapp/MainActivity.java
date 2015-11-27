@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +22,6 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseObject;
@@ -39,16 +39,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     // device sensor manager
     private SensorManager mSensorManager;
     private LocationManager myLocationManager;
-    String PROVIDER = LocationManager.GPS_PROVIDER;
-
-
-    TextView tvHeading, distanceText, lat_TextView, lng_TextView;
+    private String PROVIDER = LocationManager.GPS_PROVIDER;
+    private TextView tvHeading, distanceText, lat_TextView, lng_TextView;
 
     private SeekBar distanceBar;
     private int distance;
     public static double la;
     public static double lng;
-
+    private final double PI = (float)Math.PI;
     private final double M_IN_KM = 6378.1;
     private final double M_IN_MILES = 3959;
     private final double M_IN_FEET = 20903520;
@@ -68,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         myLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // TextView that will tell the user what degree is he heading
-        tvHeading = (TextView) findViewById(R.id.tvHeading);
+        //tvHeading = (TextView) findViewById(R.id.tvHeading);
         distanceBar = (SeekBar) findViewById(R.id.seekBar1);
         distanceBar.setOnSeekBarChangeListener(this);// set seekbar listener.
         distanceText = (TextView) findViewById(R.id.textViewProgress);
@@ -84,7 +82,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                getposition();
+                Snackbar.make(view, "The coordinate has been send to HQ", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -119,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         float degree = Math.round(event.values[0]);
         //float degree = Math.round(event.values[1]);
         //float degree = Math.round(event.values[2]);
-        tvHeading.setText("Heading: " + Float.toString(degree) + " degrees");
+//        tvHeading.setText("Heading: " + Float.toString(degree) + " degrees");
         // create a rotation animation (reverse turn degree degrees)
         RotateAnimation ra = new RotateAnimation(
                 currentDegree,
@@ -145,7 +144,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         // TODO Auto-generated method stub
     }
 
-
     //Check which seekBar is operating
     private TextView seekBar(SeekBar seekbarText) {
         if (seekbarText == distanceBar) return distanceText;
@@ -167,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onProgressChanged(SeekBar seekBar, int progress,
                                   boolean fromUser) {
         TextView a = seekBar(seekBar);
-        a.setText(Integer.toString(progress));
+        a.setText(Integer.toString(progress)+" KM");
     }
 
 
@@ -253,22 +251,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return bestLocation;
     }
 
-    public void getposition (View view)
+    public void getposition ()
     {
         Location location= getLastKnownLocation();
         showMyLocation(location);
-        lngCalculation();
+        double coordinate[] = lngCalculation();
+        pushToParse(coordinate);
     }
 
 
-    public void pushToParse(){
+    public void pushToParse(double coordinate[]){
 
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
         ParseObject GpsCoordinate = new ParseObject("GpsCoordinate");
-        Double lat = MainActivity.la;
-        Double lon = MainActivity.lng;
-        GpsCoordinate.put("latitud", lat);
-        GpsCoordinate.put("longtitude", lon);
+        /*Double lat = MainActivity.la;
+        Double lon = MainActivity.lng;*/
+        GpsCoordinate.put("latitud", coordinate[0]);
+        GpsCoordinate.put("longtitude", coordinate[1]);
         GpsCoordinate.saveInBackground();
     }
 
@@ -276,18 +275,24 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         return degree*PI/180;
     }
-    final double PI = (float)Math.PI;
-    public double coordinateToRadius(double degree){
+    public double RadiusTodegree(double degree){
 
-        return degree*(PI*180);
+        return degree*180/PI;
+    }
+    public double roundWith6Decimal( double number){
+
+        return Math.round(number*1000000)/1000000.0;
     }
 
-    public void lngCalculation(){
+
+
+
+    public double[] lngCalculation(){
 
         double brng = degreeToRadius(currentDegree);
         double dis = distance; //distance
-        double lat = coordinateToRadius(la);
-        double ln = coordinateToRadius(lng);
+        double lat = degreeToRadius(la);
+        double ln = degreeToRadius(lng);
         double R = M_IN_KM;
 
         double lat2 = Math.asin( Math.sin(lat)*Math.cos(dis/R) +
@@ -296,8 +301,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         double lng2 = ln + Math.atan2(Math.sin(brng)*Math.sin(dis/R)*Math.cos(lat),
                 Math.cos(dis/R)-Math.sin(lat)*Math.sin(lat2));
 
-        System.out.print(lat2);
-        System.out.print(lng2);
+        lat2 = RadiusTodegree(lat2);
+        lng2 = RadiusTodegree(lng2);
+
+        lat2 = roundWith6Decimal(lat2);
+        lng2 = roundWith6Decimal(lng2);
+
+
+        Log.d("lat",Double.toString(lat2));
+        Log.d("lng2",Double.toString(lng2));
+        double[] coordinate = {lat2, lng2};
+        return  coordinate;
 
 
     }

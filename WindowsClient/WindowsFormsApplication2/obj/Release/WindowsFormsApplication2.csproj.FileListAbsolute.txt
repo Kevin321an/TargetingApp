@@ -1,0 +1,17 @@
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\bin\Release\WindowsFormsApplication2.exe.config
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\bin\Release\WindowsFormsApplication2.exe
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\bin\Release\WindowsFormsApplication2.pdb
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\bin\Release\GMap.NET.Core.dll
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\bin\Release\GMap.NET.WindowsForms.dll
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\bin\Release\Parse.dll
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\bin\Release\Parse.NetFx45.dll
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\bin\Release\GMap.NET.Core.xml
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\bin\Release\GMap.NET.WindowsForms.xml
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\bin\Release\Parse.xml
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\bin\Release\Parse.NetFx45.xml
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.csprojResolveAssemblyReference.cache
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.Form1.resources
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.Properties.Resources.resources
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.csproj.GenerateResource.Cache
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.exe
+D:\MobileAss3\WindowsFormsApplication2\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.pdb

@@ -1,0 +1,11 @@
+Appearance-formborderstyle
+windowstate maximized
+
+Nuget _>  Gmap
+
+Tools -> choose tool items
+
+set the picture box to transparent -->backcolor --web ->transparent
+
+disable the behavior of the top layer-> Behaavior->Enabled -> False
+
